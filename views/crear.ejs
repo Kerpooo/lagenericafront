@@ -1,0 +1,11 @@
+<%- include("template/cabecera", {tituloWeb: 'Crear Productos'}) %>
+
+    <h1 class="text-primary">Crear Productos</h1>
+    <form action="/save" method="POST" enctype="multipart/form-data">
+        <h2>Subir Datos</h2>
+        <div>
+            <input type="file" accept=".csv" name="file_csv" />
+            <input type="submit" value="Leer Archivo" id="btn-uploadCSV" />
+        </div>
+    </form>
+<%- include("template/footer") %>
