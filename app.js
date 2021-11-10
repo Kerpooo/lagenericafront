@@ -15,13 +15,11 @@ app.use("/productos", require("./router/Productos"));
 
 //PAGINA ERROR
 app.use((req, res, next) => {
-    res.status(404).render("404", {
-        titulo: "404",
-        descripcion: "Título del sitio web",
-    });
+	res.status(404).render("404", {
+	});
 });
 
 //Inicia la escucha en el puerto 3000
 app.listen(3000, () => {
-    console.log("Servidor Inicia puerto 3000");
+	console.log("Servidor Inicia puerto 3000");
 });
