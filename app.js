@@ -11,6 +11,7 @@ app.set("views", __dirname + "/views");
 // Rutas Web
 app.use("/", require("./router/RutasWeb"));
 app.use("/productos", require("./router/Productos"));
+app.use("/clientes", require("./router/Clientes"));
 
 //PAGINA ERROR
 app.use((req, res, next) => {
