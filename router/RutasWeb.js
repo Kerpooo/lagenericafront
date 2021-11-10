@@ -19,16 +19,14 @@ router.get("/", (req, res) => {
 		loacalizacion_sucursal: "Bogotá",
 	});
 
-	console.log(messages);
 });
 let username = "admininicial";
-let password = 1234;
+let password = "admin123456";
 
 router.post("/", urlencodedParser, async (req, res) => {
 	const nombre = req.body.usuario;
 	const contraseña = req.body.contraseña;
-	let xd = __dirname;
-	console.log(nombre, contraseña, xd);
+	console.log(nombre, contraseña);
 
 	if (nombre == username && contraseña == password) {
 		res.redirect("inicio");
