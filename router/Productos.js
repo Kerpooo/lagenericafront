@@ -11,11 +11,11 @@ const http = require("http");
 const upload = multer({ dest: "./" });
 
 router.get("/", (req, res) => {
-    res.render("productos");
+    res.render("templates/vistaProductos/productos");
 });
 
 router.get("/crear", (req, res) => {
-    res.render("crear");
+    res.render("templates/vistaProductos/crear");
 });
 
 module.exports = router;
