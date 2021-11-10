@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 //Cosas de productos
@@ -10,15 +10,12 @@ const http = require("http");
 //Para subir archivos
 const upload = multer({ dest: "./" });
 
+router.get("/", (req, res) => {
+    res.render("productos");
+});
 
-router.get('/', (req,res) => {
-    res.render("productos")
-})
-
-router.get('/crear', (req,res) => {
-    res.render("crear")
-})
-
-
+router.get("/crear", (req, res) => {
+    res.render("crear");
+});
 
 module.exports = router;
