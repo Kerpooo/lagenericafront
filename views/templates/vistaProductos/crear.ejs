@@ -1,35 +1,21 @@
 <%- include("../../components/head-navbar", {tituloWeb: 'Crear Productos' }) %>
-	<% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
+<% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
 
-		<div class="d-flex justify-content-center text-center">
-			<div class="container-fluid">
-				<div class="alert alert-<%= colorAlerta %> ">
-					<%=alerta%>
-				</div>
-				<% } %>
-					<h1 class="text-primary text-center">Crear Productos</h1><br>
-					<form method="POST" enctype="multipart/form-data">
-						<div>
-							<h2 class="text-secondary text-center">Nombre del archivo
-								<input type="file" name="file_csv" accept=".csv" />
-								<input type="submit" value="Leer Archivo" id="btn-uploadCSV" />
-							</h2>
-						</div>
-					</form>
-			</div>
+<div class="d-flex justify-content-center text-center">
+	<div class="container-fluid">
+		<div class="alert alert-<%= colorAlerta %>"><%=alerta%></div>
+		<% } %>
+		<h1 class="text-primary text-center">Crear Productos</h1>
+		<br />
+		<form method="POST" enctype="multipart/form-data">
 			<div>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>código producto</th>
-							<th>nombre producto</th>
-							<th>NIT proveedor</th>
-							<th>precio compra</th>
-							<th>IVA compra</th>
-							<th>precio Venta</th>
-						</tr>
-					</thead>
-				</table>
+				<h2 class="text-secondary text-center">
+					Nombre del archivo
+					<input type="file" name="file_csv"/>
+					<input type="submit" value="Leer Archivo" id="btn-uploadCSV" />
+				</h2>
 			</div>
-		</div>
-		<%- include("../../components/footer") %>
+		</form>
+	</div>
+</div>
+<%- include("../../components/footer") %>
