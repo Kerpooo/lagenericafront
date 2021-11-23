@@ -1,34 +1,77 @@
 <%- include("../../components/head-navbar", {tituloWeb: 'Clientes'}) %>
 <h1 class="text-primary">Clientes</h1>
-             <form>
-             <div class="form-row">
-               <div class="form-group col-md-4">
-                 <label for="Nombre">Nombre Completo</label>
-                 <input type="Nombre" class="form-control" Nombre="Nombre Completo">
-               </div>
-               <div class="form-group col-md-4">
-                 <label for="Cédula">Cédula</label>
-                 <input type="Cédula" class="form-control" Cédula="Cédula">
-               </div>
-             </div>
-             <form>
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <label for="Teléfono">Teléfono</label>
-                    <input type="Teléfono" class="form-control" Teléfono="Teléfono">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="Correo">Correo Electrónico</label>
-                    <input type="Correo" class="form-control" Correo="Correo Electrónico" placeholder="@">
-                  </div>
-                </div>
-                <form>
-                    <div class="form-row">
-                      <div class="form-group col-md-4">
-                        <label for="Dirección">Dirección</label>
-                        <input type="Dirección" class="form-control" Dirección="Dirección">
-                      </div>
-                     
+<form method="POST">
+	<div class="form-row">
+		<div class="form-group col-md-4">
+			<label for="nombreCompleto">Nombre Completo</label>
+			<input type="text" class="form-control" name="nombreCompleto" required/>
+		</div>
+		<div class="form-group col-md-4">
+			<label for="cedula">Cédula</label>
+			<input type="number" class="form-control" name="cedula" required/>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-4">
+			<label for="telefono">Teléfono</label>
+			<input type="tel" class="form-control" name="telefono" required/>
+		</div>
+		<div class="form-group col-md-4">
+			<label for="correo">Correo Electrónico</label>
+			<input type="email" class="form-control" name="correo" required/>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-4">
+			<label for="direccion">Dirección</label>
+			<input type="text" class="form-control" name="direccion" required/>
+		</div>
+	</div>
+
+	<!-- Alerta -->
+	<% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
+
+		<div class="d-flex justify-content-center text-center">
+			<div class="container-fluid">
+				<div class="alert alert-<%= colorAlerta %>"><%=alerta%></div>
+				<% } %>
+
+	<!-- Alerta -->
+
+	<button type="submit" name="crear" class="btn btn-primary">Crear</button>
+	<!-- <button type="button" class="btn btn-success">Consultar</button>
+	<button type="button" class="btn btn-warning">Actualizar</button>
+	<button type="button" class="btn btn-danger">Borrar</button> -->
+</form>
+
+
+	<!-- Inicio Modal -->
+	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Consultar</button>
+	
+	<div class="modal fade" id="exampleModal" tabindex="-1">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title">Consulta por Cédula:</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<form method="post">
+			  <div class="form-group">
+				<label for="cedula" class="col-form-label">Cédula:</label>
+				<input type="number" class="form-control" name="cedula" id="cedula">
+			  </div>
+			  <button type="submit" name="buscar" class="btn btn-primary">Buscar</button>
+			</form>
+		  </div>
+
+		</div>
+	  </div>
+	</div>
+
+	<!-- Fin Modal -->
 
 
 
@@ -38,12 +81,39 @@
 
 
 
-          </div>
-          <button type="button" class="btn btn-primary">Crear</button>
-          <button type="button" class="btn btn-success">Consultar</button>
-          <button type="button" class="btn btn-warning">?????</button>
 
-    
-  </form>
+
+
+
+
+
+
+	<!-- Inicio Modal -->
+	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar">Eliminar</button>
+	
+	<div class="modal fade" id="modalEliminar" tabindex="-1">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title">Eliminar por Cédula:</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<form method="post">
+			  <div class="form-group">
+				<label for="cedula" class="col-form-label">Cédula:</label>
+				<input type="number" class="form-control" name="cedula" id="cedula">
+			  </div>
+			  <button type="submit" name="eliminar" class="btn btn-primary">Eliminar</button>
+			</form>
+		  </div>
+
+		</div>
+	  </div>
+	</div>
+
+	<!-- Fin Modal -->
 
 <%- include("../../components/footer") %>
