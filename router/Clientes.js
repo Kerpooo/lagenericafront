@@ -9,4 +9,8 @@ router.get("/", (req, res) => {
     res.render("templates/vistaClientes/clientes");
 });
 
+router.get("/crear", (req, res) => {
+    res.render("templates/vistaClientes/crear");
+});
+
 module.exports = router;
