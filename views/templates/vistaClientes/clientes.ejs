@@ -3,29 +3,11 @@
     <h1 class="text-primary">Clientes</h1>
   </div>
   <div class="container-fluid justify-content-center text-center">
-    <form class="p-3 bg-light">
-      <div class="form-row">
-        <div class="form-group col-md-6"><div class="col px-md-8">
-          <label for="Nombre">Nombre Completo</label>
-          <input type="Nombre" class="form-control" Nombre="Nombre Completo" placeholder="Nombre Completo" required>
-          <label for="Cédula">Cédula</label>
-          <input type="Cédula" class="form-control" Cédula="Cédula" placeholder="Número de Cédula" required>
-          <label for="Dirección">Dirección</label>
-          <input type="Dirección" class="form-control" Dirección="Dirección" placeholder="Direccion de residencia" required>
-        </div></div>
-        <div class="form-group col-md-6"><div class="col px-md-8">
-          <label for="Teléfono">Teléfono</label>
-          <input type="Teléfono" class="form-control" Teléfono="Teléfono" placeholder="Número de teléfono" required>
-          <label for="Correo">Correo Electrónico</label>
-          <input type="Correo" class="form-control" Correo="Correo Electrónico" placeholder="Direccion de correo Electrónico" required>
-        </div></div>
-      </div>
-      <div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
-        <button type="button" class="btn btn-outline-dark">Consultar</button>
-        <button type="button" class="btn btn-outline-success">Crear</button>
-        <button type="button" class="btn btn-outline-warning">Actualizar</button>
-        <button type="button" class="btn btn-outline-danger">Borrar</button>
-      </div>
-    </form>
+    <div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+      <a class="btn btn-outline-dark" href="./clientes/consultar" role="button">Consultar</a>
+      <a class="btn btn-outline-success" href="./clientes/crear" role="button">Crear</a>
+      <a class="btn btn-outline-warning" href="./clientes/actualizar" role="button">Actualizar</a>
+      <a class="btn btn-outline-danger" href="./clientes/eliminar" role="button">Eliminar</a>
+    </div>
   </div>
   <%- include("../../components/footer") %>
