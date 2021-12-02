@@ -41,8 +41,20 @@ router.get("/", (req, res) => {
 	res.render("templates/vistaClientes/clientes");
 });
 
+// Genera la vista de consultar
+
+router.get("/consultar", (req, res) => {
+    res.render("templates/vistaClientes/consultar");
+});
+
+// Genera la vista de crear
 router.get("/crear", (req, res) => {
-	res.render("templates/vistaClientes/crear");
+    res.render("templates/vistaClientes/crear");
+});
+
+// Genera la vista de actualizar
+router.get("/actualizar", (req, res) => {
+    res.render("templates/vistaClientes/actualizar");
 });
 
 router.post("/", urlencodedParser, async (req, res) => {

@@ -38,7 +38,7 @@ function backServerReq(options, data) {
 const http = require("http");
 
 router.get("/", (req, res) => {
-	res.render("templates/vistaVentas/Ventas");
+	res.render("templates/vistaVentas/ventas");
 });
 
 router.get("/crear", (req, res) => {
