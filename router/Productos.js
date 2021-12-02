@@ -17,27 +17,15 @@ const upload = multer({ dest: "./" });
 
 //Estructura columnas del archivo
 let estructura = [
-	"codigo_producto",
-	"nombre_producto",
-	"nitproveedor",
-	"precio_compra",
-	"ivacompra",
-	"precio_venta",
+	"codigoProducto",
+	"nombreProducto",
+	"nitProveedor",
+	"precioCompra",
+	"ivaCompra",
+	"precioVenta",
 ];
 
-let objData = "";
 
-//Se usa para enviar los datos al back por http request
-const options = {
-	host: "localhost",
-	port: 8081,
-	path: "/api/productos",
-	method: "POST",
-	headers: {
-		"Content-Type": "application/json",
-		"Content-Length": objData.length,
-	},
-};
 
 //Hace el request al server
 function backServerReq(options, data) {
@@ -123,18 +111,29 @@ function verify(array) {
 
 //Toma un array lo transforma a objeto y lo envia al back
 function uploadObj(array) {
+	
 	for (let i = 1; i < array.length; i++) {
 		const producto = array[i];
 
 		objData = JSON.stringify({
-			codigoproducto: parseInt(producto[0]),
-			nombreproducto: producto[1],
-			nitproveedor: parseInt(producto[2]),
-			preciocompra: parseInt(producto[3]),
-			ivacompra: parseInt(producto[4]),
-			precioventa: parseInt(producto[5]),
+			codigoProducto: parseInt(producto[0]),
+			nombreProducto: producto[1],
+			nitProveedor: parseInt(producto[2]),
+			precioCompra: parseInt(producto[3]),
+			ivaCompra: parseInt(producto[4]),
+			precioVenta: parseInt(producto[5]),
 		});
-
+//Se usa para enviar los datos al back por http request
+		const options = {
+		host: "localhost",
+		port: 8083,
+		path: "/api/crear",
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"Content-Length": objData.length,
+			},
+		};
 		backServerReq(options, objData);
 	}
 }

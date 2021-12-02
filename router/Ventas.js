@@ -38,11 +38,11 @@ function backServerReq(options, data) {
 const http = require("http");
 
 router.get("/", (req, res) => {
-	res.render("templates/vistaClientes/clientes");
+	res.render("templates/vistaVentas/Ventas");
 });
 
 router.get("/crear", (req, res) => {
-	res.render("templates/vistaClientes/crear");
+	res.render("templates/vistaVentas/crear");
 });
 
 router.post("/", urlencodedParser, async (req, res) => {
@@ -83,7 +83,7 @@ router.post("/", urlencodedParser, async (req, res) => {
 		backServerReq(options, data);
 
 		//Alerta Consulta
-		res.render("./templates/vistaClientes/clientes", {
+		res.render("./templates/vistaVentas/Ventas", {
 			alerta: "Consulta",
 			colorAlerta: "warning",
 		});
@@ -106,7 +106,7 @@ router.post("/", urlencodedParser, async (req, res) => {
 		backServerReq(options, data);
 
 		//Alerta Consulta
-		res.render("./templates/vistaClientes/clientes", {
+		res.render("./templates/vistaVentas/Ventas", {
 			alerta: "Cliente Eliminado",
 			colorAlerta: "danger",
 		});
@@ -128,7 +128,7 @@ router.post("/", urlencodedParser, async (req, res) => {
 		backServerReq(options, data);
 
 		//Alerta Cliente Creado Correcto
-		res.render("./templates/vistaClientes/clientes", {
+		res.render("./templates/vistaVentas/Ventas", {
 			alerta: "Cliente Creado",
 			colorAlerta: "success",
 		});
