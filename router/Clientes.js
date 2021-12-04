@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const http = require("http");
+const axios = require("axios");
 const app = express();
 
 // create application/json parser
@@ -57,6 +58,8 @@ function backServerReq(options, data) {
 	req.end();
 }
 
+/////////////////////////////////////////////Metodos HTTP/////////////////////////////////////////
+/////////////////////////////////////////////Metodos HTTP/////////////////////////////////////////
 router.post("/crear", urlencodedParser, async (req, res) => {
 	const nombreCompleto = req.body.nombreCompleto;
 	const cedula = req.body.cedula;
@@ -88,6 +91,8 @@ router.post("/crear", urlencodedParser, async (req, res) => {
 		},
 	};
 
+	backServerReq(options, data);
+
 	//Alerta Cliente Creado Correcto
 	res.render("./templates/vistaClientes/crear", {
 		alerta: "Cliente Creado",
@@ -106,24 +111,32 @@ router.post("/", urlencodedParser, async (req, res) => {
 
 	//Para consulta por cedula
 	if (buscar == "") {
-		console.log(req.body);
-
-		const options = {
-			host: "localhost",
-			port: 8082,
-			path: "/api/consultar/" + cedula,
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				"Content-Length": data.length,
-			},
+		const getCliente = async () => {
+			try {
+				return await axios.get("http://localhost:8082/api/consultar/" + cedula);
+			} catch (error) {
+				console.error(error);
+			}
 		};
 
-		let resultado = backServerReq(options, data);
+		const useCliente = async () => {
+			const cliente = await getCliente();
 
-		console.log("DEbug" + resultado);
+			if (cliente.data) {
+				console.log(cliente.data);
 
-		res.render("templates/vistaClientes/consultar", {});
+				
+				res.render("./templates/vistaClientes/consultar", {
+					nombre: cliente.data.nombreCliente,
+					direccion: cliente.data.direccionCliente,
+					telefono: cliente.data.telefonoCliente,
+					email: cliente.data.emailCliente,
+					cedula: cliente.data.cedula,
+				});
+			}
+		};
+
+		useCliente();
 	}
 
 	//Eliminar
