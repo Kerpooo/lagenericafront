@@ -1,0 +1,25 @@
+<%- include("../../components/head-navbar", {tituloWeb: 'Reportes'}) %>
+
+<div class="p-3 d-flex justify-content-center text-center">
+	<h1 class="text-primary">Total de Ventas por Cliente</h1>
+</div>
+<div class="p-3 d-flex justify-content-center text-center">
+	<table id="tbl">
+		<tr>
+			<th>Cedula</th>
+			<th>Nombre</th>
+			<th>Valor Total Ventas</th>
+		</tr>
+		<tr>
+			<td><input type="text" id="cedula" name="cedula"></td>
+			<td><input type="text" id="nombre" name="nombre"></td>
+			<td><input type="text" id="ventas" name="ventas"></td>
+		</tr>
+	</table>
+</div>
+<div class="p-3 d-flex justify-content-center text-center">
+		<div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+			<a class="btn btn-outline-dark" href="/Reportes" role="button">Regresar</a>
+		</div>
+</div>
+  <%- include("../../components/footer") %>
