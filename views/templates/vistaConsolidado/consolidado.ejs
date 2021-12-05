@@ -1,0 +1,36 @@
+<%- include("../../components/head-navbar", {tituloWeb: 'Consolidado'}) %>
+
+<div class="p-3 d-flex justify-content-center text-center">
+	<h1 class="text-primary">Total de ventas por ciudad</h1>
+</div>
+<div class="p-3 d-flex justify-content-center text-center">
+	<div class="contenedor">
+		<div class="tabV">
+			<table id="tbl">
+				<tr>
+					<th>Ciudad</th>
+					<th>Valor Total Ventas</th>
+				</tr>
+				<tr>
+					<td><input type="text" id="ciudad" name="ciudad"></td>
+					<td><input type="text" id="valortotal" name="valortotal"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>	
+<div class="p-3 d-flex justify-content-center text-center">
+	<div class="contenedor">
+		<div class="tabV">
+			<table id="tb2">
+				<tr>
+					<th>Total de ventas</th>
+				</tr>
+				<tr>
+					<td><input type="text" id="" name="totalventas"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>	
+  <%- include("../../components/footer") %>
