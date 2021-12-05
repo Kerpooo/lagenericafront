@@ -5,57 +5,76 @@
     <div class="p-3 d-flex justify-content-center text-center">
         <div class="contenedor">
             <div class="tabV">
-                <table id="tbl">
+                <table id="tbl" class="table table-striped table-bordered">
+                    <thead class="thead-dark">
                     <tr>
                         <th>Cedula</th>
                         <td><input type="text" id="cedula" name="cedula"></td>
                         <td><input class="btn-v" type="submit" value="consultar"></td>
                         <th>Cliente</th>
                         <td><input type="text" id="nombre" name="nombre"></td>
-                        <th>consecutivo</th>
-                        <td><input type="text" id="venta" name="venta"></td>
+                        <th>Consecutivo</th>
+                        <td><input type="text" id="consecutivo" name="consecutivo"></td>
                     </tr>
+                </thead>
                 </table>
-                <table id="tbl">
+                <table id="tbl2" class="table table-striped table-bordered"
+                > <thead class="thead-dark">
                     <tr>
-                        <th>cod.produc</th>
+                        <th>Codigo Producto</th>
                         <th></th>
                         <th>Nombre Producto</th>
-                        <th></th>
-                        <th>cantidad</th>
-                        <th></th>
+                        <th>Valor Unitario</th>
+                        <th>Cantidad</th>
                         <th>Valor Total</th>
                     </tr>
                     <tr>
                         <td><input type="text" id="codigoProducto" name="codigoProducto"></td>
                         <td><input class="btn-v" type="submit" value="consultar"></td>
                         <td><input type="text" id="nombreProducto" name="nombreProducto"></td>
-                        <td><input type="text" id="cantidadProducto" name="cantidadProducto"></td>
-                        <td><input type="text" id="valorTotal" name="valorTotal"></td>
+                        <td><input type="text" id="valorunit" name="valorunit"></td>
+                        <td><input type="text" id="cantidad" name="cantidad"></td>
+                        <td><input type="text" id="valortotal" name="valortotal"></td>
                     </tr>
                     <tr>
                         <td><input type="text" id="codigoProducto" name="codigoProducto"></td>
                         <td><input class="btn-v" type="submit" value="consultar"></td>
                         <td><input type="text" id="nombreProducto" name="nombreProducto"></td>
-                        <td><input type="text" id="cantidadProducto" name="cantidadProducto"></td>
-                        <td><input type="text" id="valorTotal" name="valorTotal"></td>
+                        <td><input type="text" id="valorunit" name="valorunit"></td>
+                        <td><input type="text" id="cantidad" name="cantidad"></td>
+                        <td><input type="text" id="valortotal" name="valortotal"></td>
                     </tr>
                     <tr>
                         <td><input type="text" id="codigoProducto" name="codigoProducto"></td>
                         <td><input class="btn-v" type="submit" value="consultar"></td>
                         <td><input type="text" id="nombreProducto" name="nombreProducto"></td>
-                        <td><input type="text" id="cantidadProducto" name="cantidadProducto"></td>
-                        <td><input type="text" id="valorTotal" name="valorTotal"></td>
+                        <td><input type="text" id="valorunit" name="valorunit"></td>
+                        <td><input type="text" id="cantidad" name="cantidad"></td>
+                        <td><input type="text" id="valortotal" name="valortotal"></td>
                     </tr>
-                    <tr>
-                        <td><input type="text" id="codigoProducto" name="codigoProducto"></td>
-                        <td><input class="btn-v" type="submit" value="consultar"></td>
-                        <td><input type="text" id="nombreProducto" name="nombreProducto"></td>
-                        <td><input type="text" id="cantidadProducto" name="cantidadProducto"></td>
-                        <td><input type="text" id="valorTotal" name="valorTotal"></td>
-                    </tr>
+                </thead>
                 </table>
             </div>
         </div>
     </div>
+    <div class="p-3 d-flex justify-content-center text-center">
+        <div class="contenedor">
+            <div class="tabV">
+                <table id="tb3" class="table table-dark table-bordered" >
+                    <tr>
+                        <td>Subtotal</td>
+                        <td><input type="text" id="" name="subtotal"></td>
+                        <td>IVA</td>
+                        <td><input type="text" id="" name="iva"></td>
+                        <td>Total</td>
+                        <td><input type="text" id="" name="grantotal"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+                <button type="submit" name="crear" class="btn btn-outline-success">Confirmar</button>
+              </div>
+        </div>
+    </div>	
+   
     <%- include("../../components/footer") %>
