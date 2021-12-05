@@ -104,6 +104,8 @@ router.post("/", urlencodedParser, async (req, res) => {
 	const cedula = req.body.cedula;
 	const eliminar = req.body.eliminar;
 	const buscar = req.body.buscar;
+	const actualizar = req.body.actualizar;
+	const guardar = req.body.guardar;
 
 	const data = JSON.stringify({
 		cedulaCliente: cedula,
@@ -137,6 +139,79 @@ router.post("/", urlencodedParser, async (req, res) => {
 		};
 
 		useCliente();
+	}
+	//Para consulta de actualizacion
+	if (actualizar == "") {
+		const getCliente = async () => {
+			try {
+				return await axios.get("http://localhost:8082/api/consultar/" + cedula);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		const useCliente = async () => {
+			const cliente = await getCliente();
+
+			if (cliente.data) {
+				console.log(cliente.data);
+				
+	
+
+				
+				res.render("./templates/vistaClientes/actualizar", {
+					nombre: cliente.data.nombreCliente,
+					direccion: cliente.data.direccionCliente,
+					telefono: cliente.data.telefonoCliente,
+					email: cliente.data.email,
+					cedula: cliente.data.cedula,
+				});
+			}
+		};
+
+		useCliente();
+	}
+
+	if (guardar == "") {
+
+		const nombre = req.body.nombre;
+		const cedula =req.body.cedula;
+		const correo = req.body.correo;
+		const telefono = req.body.telefono;
+		const direccion = req.body.direccion;
+
+		const data = JSON.stringify({
+			cedulaCliente: cedula,
+			direccionCliente: direccion,
+			emailCliente: correo,
+			nombreCliente: nombre,
+			telefonoCliente: telefono,
+		});
+
+	//DEBUGGER
+	console.log(data);
+
+
+	//Para actualizar Cliente
+
+	const options = {
+		host: "localhost",
+		port: 8082,
+		path: "/api/crear",
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"Content-Length": data.length,
+		},
+	};
+
+	backServerReq(options, data);
+
+	//Alerta Cliente Creado Correcto
+	res.render("./templates/vistaClientes/Clientes", {
+		alerta: "Cliente Actualizado",
+		colorAlerta: "success",
+	});
 	}
 
 	//Eliminar
