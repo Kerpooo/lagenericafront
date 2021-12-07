@@ -11,11 +11,15 @@
 			<th>Nombre</th>
 			<th>Valor Total Ventas</th>
 		</tr>
-		<tr>
-			<td><input type="text" id="cedula" name="cedula"></td>
-			<td><input type="text" id="nombre" name="nombre"></td>
-			<td><input type="text" id="ventas" name="ventas"></td>
-		</tr>
+			<% for (var i=0; i<ventas.length; i++) { %>
+			<tr>
+				
+				<td><%= ventas[i].cedulaCliente %></td>
+				<td></td>
+				<td><%= ventas[i].totalVenta %></td>
+				
+			</tr>
+			<% } %>
 	</thead>
 	</table>
 </div>

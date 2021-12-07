@@ -46,7 +46,7 @@ router.get("/crear", (req, res) => {
 });
 
 router.post("/", urlencodedParser, async (req, res) => {
-	const nombreCompleto = req.body.nombreCompleto;
+	const consultarCedula = req.body.consultarCedula;
 	const cedula = req.body.cedula;
 	const correo = req.body.correo;
 	const telefono = req.body.telefono;
@@ -68,7 +68,7 @@ router.post("/", urlencodedParser, async (req, res) => {
 	console.log(eliminar == "");
 
 	//Para consulta por cedula
-	if (buscar == "") {
+	if (consultarCedula == "") {
 		const options = {
 			host: "localhost",
 			port: 8082,
