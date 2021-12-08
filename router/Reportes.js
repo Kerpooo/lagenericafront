@@ -46,6 +46,7 @@ router.post("/", urlencodedParser, async (req, res) => {
 			if (clientes.data) {
 				console.log(clientes.data);		
 			}
+			
 
 			res.render("./templates/vistaReportes/listaClientes",{clientes:(clientes.data)});
 		};
@@ -62,15 +63,58 @@ router.post("/", urlencodedParser, async (req, res) => {
 					console.error(error);
 				}
 			};
+			const getClientes = async () => {
+				try {
+					return await axios.get("http://localhost:8082/api/consultar");
+				} catch (error) {
+					console.error(error);
+				}
+			};
+
 	
 			const useVentas = async () => {
 				const ventas = await getVentas();
+				const clientes = await getClientes();
+
 	
 				if (ventas.data) {
-					console.log(ventas.data);
-	
-					
-					res.render("./templates/vistaReportes/listaVentas",{ventas:(ventas.data)});
+					let dataVentas=ventas.data;
+					const cedulas = dataVentas.map((x) => x.cedulaCliente);
+					// He cambiado el nombre de la variable nombre a arrayNombres, mucho más indicativo de su contenido!
+					const arrayCedulas= [...new Set(cedulas)];
+					// Se declara un arrayVentas vacío, aquí almacenaremos las ventas de cada uno
+					const arrayVentas = [];
+					arrayCedulas.forEach((ced) => {
+					const filtro = dataVentas.filter((x) => x.cedulaCliente == ced);
+					const ventas = filtro.reduce((act, valor) => act + valor.totalVenta, 0);
+					// Hasta aquí es lo mismo que tenías tu!
+					// Simplemente en vez de imprimirlo en consola, lo meto al array de ventas
+					arrayVentas.push(ventas);
+					});
+					const arrayNombres=[];
+					let dataClientes=clientes.data;
+					for (i=0;i<arrayCedulas.length;i++){
+						let cedula=arrayCedulas[i];
+						for(j=0;j<dataClientes.length;j++){
+							if(cedula==dataClientes[j].cedula){
+								arrayNombres.push(dataClientes[j].nombreCliente)
+							}
+						}
+					}
+					console.log(clientes.data);
+					let resultado=[];
+					for (i=0;i<arrayCedulas.length;i++){
+
+						let obj= {
+							cedula:arrayCedulas[i],
+							nombre:arrayNombres[i],
+							ventas:arrayVentas[i]
+						}
+						resultado.push(obj);
+					}
+					console.log(resultado);
+
+					res.render("./templates/vistaReportes/listaVentas",{datos:(resultado)});
 				}
 			};
 	
