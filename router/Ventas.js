@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const app = express();
+const axios = require("axios");
 
 // create application/json parser
 const jsonParser = bodyParser.json();
@@ -38,11 +39,34 @@ function backServerReq(options, data) {
 const http = require("http");
 
 router.get("/", (req, res) => {
-	res.render("templates/vistaVentas/ventas");
-});
+    const getProductos = async () => {
+        try {
+            return await axios.get("http://localhost:8083/api/consultar");
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    const getClientes = async () => {
+        try {
+            return await axios.get("http://localhost:8082/api/consultar");
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-router.get("/crear", (req, res) => {
-	res.render("templates/vistaVentas/crear");
+    const useVentas = async () => {
+        const productos = await getProductos();
+        const clientes = await getClientes();
+
+		res.render("templates/vistaVentas/ventas", {
+			productos: (productos.data),
+			clientes: (clientes.data)
+		});
+    };
+
+   
+
+    useVentas();
 });
 
 router.post("/", urlencodedParser, async (req, res) => {
