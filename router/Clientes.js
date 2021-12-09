@@ -163,7 +163,7 @@ router.post("/", urlencodedParser, async (req, res) => {
 					nombre: cliente.data.nombreCliente,
 					direccion: cliente.data.direccionCliente,
 					telefono: cliente.data.telefonoCliente,
-					email: cliente.data.email,
+					email: cliente.data.emailCliente,
 					cedula: cliente.data.cedula,
 				});
 			}
@@ -208,7 +208,7 @@ router.post("/", urlencodedParser, async (req, res) => {
 	backServerReq(options, data);
 
 	//Alerta Cliente Creado Correcto
-	res.render("./templates/vistaClientes/Clientes", {
+	res.render("./templates/inicio", {
 		alerta: "Cliente Actualizado",
 		colorAlerta: "success",
 	});

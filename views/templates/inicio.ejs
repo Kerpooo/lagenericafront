@@ -7,4 +7,13 @@
 	<h3 class="text-primary">Por favor seleccione una opción del menú superior</h3>
 </div>
 
+    <% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
+
+        <div class="d-flex justify-content-center text-center">
+            <div class="container-fluid">
+                <div class="alert alert-<%= colorAlerta %> ">
+                    <%=alerta%>
+                </div>
+                <% } %>
+
 <%- include("../components/footer") %>

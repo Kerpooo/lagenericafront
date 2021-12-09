@@ -39,124 +39,126 @@ function backServerReq(options, data) {
 const http = require("http");
 
 router.get("/", (req, res) => {
-    const getProductos = async () => {
-        try {
-            return await axios.get("http://localhost:8083/api/consultar");
-        } catch (error) {
-            console.error(error);
-        }
-    };
-    const getClientes = async () => {
-        try {
-            return await axios.get("http://localhost:8082/api/consultar");
-        } catch (error) {
-            console.error(error);
-        }
-    };
+	const getProductos = async () => {
+		try {
+			return await axios.get("http://localhost:8083/api/consultar");
+		} catch (error) {
+			console.error(error);
+		}
+	};
+	const getClientes = async () => {
+		try {
+			return await axios.get("http://localhost:8082/api/consultar");
+		} catch (error) {
+			console.error(error);
+		}
+	};
+	const getVentas = async () => {
+		try {
+			return await axios.get("http://localhost:8081/api/listar");
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-    const useVentas = async () => {
-        const productos = await getProductos();
-        const clientes = await getClientes();
+	const useVentas = async () => {
+		const productos = await getProductos();
+		const clientes = await getClientes();
+		const ventas = await getVentas();
+
+
+		console.log(ventas.data);
 
 		res.render("templates/vistaVentas/ventas", {
-			productos: (productos.data),
-			clientes: (clientes.data)
+			productos: productos.data,
+			clientes: clientes.data,
+			ventas: ventas.data,
 		});
-    };
+	};
 
-   
-
-    useVentas();
+	useVentas();
 });
 
 router.post("/", urlencodedParser, async (req, res) => {
-	const consultarCedula = req.body.consultarCedula;
-	const cedula = req.body.cedula;
-	const correo = req.body.correo;
-	const telefono = req.body.telefono;
-	const direccion = req.body.direccion;
-	const eliminar = req.body.eliminar;
-	const buscar = req.body.buscar;
-	const crear = req.body.crear;
+	const cedulaCliente = req.body.cedulaCliente;
+	const consecutivo = req.body.consecutivo;
+
+	//codigo producto
+	const cp1 = req.body.codigoProducto1;
+	const cp2 = req.body.codigoProducto2;
+	const cp3 = req.body.codigoProducto3;
+
+	//valor unitario
+	const vunit1 = req.body.valorUnit1;
+	const vunit2 = req.body.valorUnit2;
+	const vunit3 = req.body.valorUnit3;
+
+	//cantidad
+	const cantP1 = req.body.cantidadProducto1;
+	const cantP2 = req.body.cantidadProducto2;
+	const cantP3 = req.body.cantidadProducto3;
+
+	//valor total de cada producto
+	const valorVenta1 = req.body.valorVenta1;
+	const valorVenta2 = req.body.valorVenta2;
+	const valorVenta3 = req.body.valorVenta3;
+
+	const subVenta = req.body.subtotalVenta;
+	const iva = req.body.iva;
+	const totalVenta = req.body.totalVenta;
 
 	const data = JSON.stringify({
-		cedulaCliente: cedula,
-		direccionCliente: direccion,
-		emailCliente: correo,
-		nombreCliente: nombreCompleto,
-		telefonoCliente: telefono,
+		codigoVenta: consecutivo,
+		cedulaCliente: cedulaCliente,
+		detalleVenta: [
+			{
+				cantidadProducto: cantP1,
+				codigoProducto: cp1,
+				valorTotal: vunit1,
+				valorVenta: valorVenta1,
+				valorIVA: iva,
+			},
+			{
+				cantidadProducto: cantP2,
+				codigoProducto: cp2,
+				valorTotal: vunit2,
+				valorVenta: valorVenta2,
+				valorIVA: iva,
+			},
+			{
+				cantidadProducto: cantP3,
+				codigoProducto: cp3,
+				valorTotal: vunit3,
+				valorVenta: valorVenta3,
+				valorIVA: iva,
+			},
+		],
+		ivaVenta: iva,
+		subtotalVenta: subVenta,
+		totalVenta: totalVenta,
 	});
 
-	//DEBUGGER
-	console.log(req.body);
-	console.log(eliminar == "");
 
-	//Para consulta por cedula
-	if (consultarCedula == "") {
-		const options = {
-			host: "localhost",
-			port: 8082,
-			path: "/api/consultar/"+cedula,
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				"Content-Length": data.length,
-			},
-		};
+	console.log(data);
 
-		backServerReq(options, data);
+	const options = {
+		host: "localhost",
+		port: 8081,
+		path: "/api/crear",
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"Content-Length": data.length,
+		},
+	};
 
-		//Alerta Consulta
-		res.render("./templates/vistaVentas/Ventas", {
-			alerta: "Consulta",
-			colorAlerta: "warning",
-		});
-	}
+	backServerReq(options, data);
 
-	//Eliminar
-
-	if (eliminar == "") {
-		const options = {
-			host: "localhost",
-			port: 8082,
-			path: "/api/eliminar/"+cedula,
-			method: "DELETE",
-			headers: {
-				"Content-Type": "application/json",
-				"Content-Length": data.length,
-			},
-		};
-
-		backServerReq(options, data);
-
-		//Alerta Consulta
-		res.render("./templates/vistaVentas/Ventas", {
-			alerta: "Cliente Eliminado",
-			colorAlerta: "danger",
-		});
-	}
-
-	//Para Crear Cliente
-	if (crear == "") {
-		const options = {
-			host: "localhost",
-			port: 8082,
-			path: "/api/crear",
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				"Content-Length": data.length,
-			},
-		};
-
-		backServerReq(options, data);
-
-		//Alerta Cliente Creado Correcto
-		res.render("./templates/vistaVentas/Ventas", {
-			alerta: "Cliente Creado",
-			colorAlerta: "success",
-		});
-	}
+	//Alerta Cliente Creado Correcto
+	res.render("./templates/inicio", {
+		alerta: "Venta Confirmada",
+		colorAlerta: "success",
+	});
 });
 
 module.exports = router;
