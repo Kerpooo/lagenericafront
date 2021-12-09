@@ -1,0 +1,39 @@
+<%- include("../../components/head-navbar", {tituloWeb: 'Reportes'}) %>
+
+<div class="p-3 d-flex justify-content-center text-center">
+	<h1 class="text-primary">Listado de Clientes</h1>
+</div>
+<div class="p-3 d-flex justify-content-center text-center">
+	<div class="contenedor">
+		<div class="tabV">
+			<table id="tbl" class="table table-striped table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th>Cedula</th>
+						<th>Nombre</th>
+						<th>Correo Electronico</th>
+						<th>Direccion</th>
+						<th>Telefono</th>
+					</tr>
+					<% for (var i=0; i<clientes.length; i++) { %>
+					<tr>
+						
+						<td><%= clientes[i].cedula %></td>
+						<td><%= clientes[i].nombreCliente %></td>
+						<td><%= clientes[i].emailCliente %></td>
+						<td><%= clientes[i].direccionCliente %></td>
+						<td><%= clientes[i].telefonoCliente %></td>
+						
+					</tr>
+					<% } %>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>	
+<div class="p-3 d-flex justify-content-center text-center">
+		<div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+			<a class="btn btn-outline-dark" href="/Reportes" role="button">Regresar</a>
+		</div>
+	</div>
+  <%- include("../../components/footer") %>

@@ -1,0 +1,32 @@
+<%- include("../../components/head-navbar", {tituloWeb: 'Reportes'}) %>
+
+<div class="p-3 d-flex justify-content-center text-center">
+	<h1 class="text-primary">Total de Ventas por Cliente</h1>
+</div>
+<div class="p-3 d-flex justify-content-center text-center">
+	<table id="tbl" class="table table-striped table-bordered">
+		<thead class="thead-dark">
+		<tr>
+			<th>Cedula</th>
+			<th>Nombre</th>
+			<th>Valor Total Ventas</th>
+		</tr>
+		<% for (var i=0; i<datos.length; i++) { %>
+			<tr>
+				
+				<td><%= datos[i].cedula %></td>
+				<td><%= datos[i].nombre %></td>
+				<td><%= datos[i].ventas %></td>
+							
+			</tr>
+			<% } %>
+
+	</thead>
+	</table>
+</div>
+<div class="p-3 d-flex justify-content-center text-center">
+		<div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+			<a class="btn btn-outline-dark" href="/Reportes" role="button">Regresar</a>
+		</div>
+</div>
+  <%- include("../../components/footer") %>

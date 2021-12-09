@@ -1,0 +1,72 @@
+<%- include("../../components/head-navbar", {tituloWeb: 'Clientes'}) %>
+
+<div class="p-3 d-flex justify-content-center text-center">
+	<h1 class="text-primary">Consulta de Cliente</h1>
+</div>
+<div class="container-fluid justify-content-center text-center">
+	<form class="p-3 bg-light">
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<div class="col px-md-8">
+					<label for="Nombre">Nombre Completo</label>
+					<input
+						type="text"
+						class="form-control"
+						name="nombreCompleto"
+						placeholder="Nombre Completo"
+            value="<%=nombre%>"
+						disabled
+					/>
+					<label for="Cédula">Cédula</label>
+					<input
+						type="number"
+						class="form-control"
+						name="cedula"
+						placeholder="Número de Cédula"
+            value="<%=cedula%>"
+						disabled
+					/>
+					<label for="Dirección">Dirección</label>
+					<input
+						type="Dirección"
+						class="form-control"
+						name="direccion"
+						placeholder="Direccion de residencia"
+            value="<%=direccion%>"
+						disabled
+					/>
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<div class="col px-md-8">
+					<label for="Teléfono">Teléfono</label>
+					<input
+						type="tel"
+						class="form-control"
+						name="telefono"
+						placeholder="Número de teléfono"
+            value="<%=telefono%>"
+						disabled
+					/>
+					<label for="Correo">Correo Electrónico</label>
+					<input
+						type="email"
+						class="form-control"
+						name="correo"
+						placeholder="Direccion de correo Electrónico"
+            value="<%=email%>"
+						disabled
+					/>
+				</div>
+			</div>
+		</div>
+		<div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+			<a class="btn btn-outline-dark" href="/Clientes" role="button">Regresar</a>
+		</div>
+	</form>
+  <%- include("../../components/footer") %>
+</div>
+
+
+	</div>
+</div>

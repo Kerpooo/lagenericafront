@@ -1,11 +1,21 @@
-<%- include("../../components/head-navbar", {tituloWeb: 'Crear Productos'}) %>
+<%- include("../../components/head-navbar", {tituloWeb: 'Crear Productos' }) %>
+	<% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
 
-<h1 class="text-primary">Crear Productos</h1>
-<form action="/save" method="POST" enctype="multipart/form-data">
-	<h2>Subir Datos</h2>
-	<div>
-		<input type="file" accept=".csv" name="file_csv" />
-		<input type="submit" value="Leer Archivo" id="btn-uploadCSV" />
-	</div>
-</form>
-<%- include("../../components/footer") %>
+		<div class="d-flex justify-content-center text-center">
+			<div class="container-fluid">
+				<div class="alert alert-<%= colorAlerta %> ">
+					<%=alerta%>
+				</div>
+				<% } %>
+					<h1 class="text-primary text-center">Crear Productos</h1><br>
+					<form method="POST" enctype="multipart/form-data">
+						<div>
+							<h2 class="text-secondary text-center">Nombre del archivo
+								<input type="file" name="file_csv" accept=".csv" />
+								<input type="submit" value="Leer Archivo" id="btn-uploadCSV" />
+							</h2>
+						</div>
+					</form>
+			</div>
+		</div>
+		<%- include("../../components/footer") %>

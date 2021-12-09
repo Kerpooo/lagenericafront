@@ -1,0 +1,29 @@
+<%- include("../../components/head-navbar", {tituloWeb: 'Reportes'}) %>
+<div class="p-3 d-flex justify-content-center text-center">
+    <h1 class="text-primary">Reportes</h1>
+  </div>
+  <div class="container-fluid justify-content-center text-center">
+	<form class="p-3 bg-light" method="post">
+    <div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+		<button type="submit" name="listarClientes" class="btn btn-outline-dark" role="button">Listado de Clientes</button>
+		<button type="submit" name="listarVentas" class="btn btn-outline-dark" role="button">Ventas por Clientes</button>
+    </div>
+	</form>
+  </div>
+
+
+	<!-- Alerta -->
+	<% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
+
+		<div class="d-flex justify-content-center text-center">
+			<div class="container-fluid">
+				<div class="alert alert-<%= colorAlerta %>"><%=alerta%></div>
+				<% } %>
+
+	<!-- Alerta -->
+
+</form>
+
+
+	
+<%- include("../../components/footer") %>

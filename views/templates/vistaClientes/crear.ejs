@@ -1,0 +1,42 @@
+<%- include("../../components/head-navbar", {tituloWeb: 'Clientes'}) %>
+
+<div class="p-3 d-flex justify-content-center text-center">
+    <h1 class="text-primary">Crear Clientes</h1>
+  </div>
+  <div class="container-fluid justify-content-center text-center">
+    <form class="p-3 bg-light" method="POST">
+      <div class="form-row">
+        <div class="form-group col-md-6"><div class="col px-md-8">
+          <label for="Nombre">Nombre Completo</label>
+          <input type="text" class="form-control" name="nombreCompleto" placeholder="Nombre Completo" required>
+          <label for="Cédula">Cédula</label>
+          <input type="number" class="form-control" name="cedula" placeholder="Número de Cédula" required>
+          <label for="Dirección">Dirección</label>
+          <input type="Dirección" class="form-control" name="direccion" placeholder="Direccion de residencia" required>
+        </div></div>
+        <div class="form-group col-md-6"><div class="col px-md-8">
+          <label for="Teléfono">Teléfono</label>
+          <input type="tel" class="form-control" name="telefono" placeholder="Número de teléfono" required>
+          <label for="Correo">Correo Electrónico</label>
+          <input type="email" class="form-control" name="correo" placeholder="Direccion de correo Electrónico" required>
+        </div></div>
+      </div>
+      <div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+        <button type="submit" name="crear" class="btn btn-outline-success">Crear</button>
+        <a class="btn btn-outline-dark" href="/Clientes" role="button">Regresar</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Alerta -->
+	<% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
+
+		<div class="d-flex justify-content-center text-center">
+			<div class="container-fluid">
+				<div class="alert alert-<%= colorAlerta %>"><%=alerta%></div>
+				<% } %>
+
+	<!-- Alerta -->
+
+
+<%- include("../../components/footer") %>
