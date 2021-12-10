@@ -1,0 +1,110 @@
+<%- include("../../components/head-navbar", {tituloWeb: 'Proveedores'}) %>
+<div class="myDiv3">
+<div class="p-1 d-flex justify-content-center text-center">
+    <h1 class="text-primary">Proveedores</h1>
+  </div>
+  <div class="container-fluid justify-content-center text-center">
+    <div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+	  <a class="btn btn-outline-success bg-success text-white" href="./proveedores/crear" role="button">Crear</a>
+	  <button type="button" class="btn btn-outline-dark bg-dark text-white" data-toggle="modal" data-target="#modalConsultar">Consultar</button>
+	  <button type="button" class="btn btn-outline-warning bg-warning text-dark" data-toggle="modal" data-target="#modalActualizar">Actualizar</button>
+	  <button type="button" class="btn btn-outline-danger bg-danger text-white" data-toggle="modal" data-target="#modalEliminar">Eliminar</button>
+    </div>
+  </div>	
+</div>
+
+
+	<!-- Alerta -->
+	<% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
+
+		<div class="d-flex justify-content-center text-center">
+			<div class="container-fluid">
+				<div class="alert alert-<%= colorAlerta %>"><%=alerta%></div>
+				<% } %>
+
+	<!-- Alerta -->
+
+</form>
+
+
+	<!-- Inicio Modal -->
+	<div class="modal fade" id="modalConsultar" tabindex="-1">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title">Consulta por Nit:</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<form method="post">
+			  <div class="form-group">
+				<label for="cedula" class="col-form-label">Nit:</label>
+				<input type="number" class="form-control" name="cedula" id="cedula">
+			  </div>
+			  <button type="submit" name="buscar" class="btn btn-outline-dark" role="button">Consultar</button>
+			</form>
+		  </div>
+
+		</div>
+	  </div>
+	</div>
+
+	<!-- Fin Modal -->
+
+	<!-- Inicio Modal -->
+	<div class="modal fade" id="modalActualizar" tabindex="-1">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title">Consulta por Nit:</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  <form method="post">
+				<div class="form-group">
+				  <label for="cedula" class="col-form-label">Nit:</label>
+				  <input type="number" class="form-control" name="cedula" id="cedula">
+				</div>
+				<button type="submit" name="actualizar" class="btn btn-outline-dark" role="button">Consultar</button>
+			  </form>
+			</div>
+  
+		  </div>
+		</div>
+	  </div>
+  
+	  <!-- Fin Modal -->
+
+	<!-- Inicio Modal -->
+	
+	<div class="modal fade" id="modalEliminar" tabindex="-1">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title">Eliminar por Nit:</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<form method="post">
+			  <div class="form-group">
+				<label for="cedula" class="col-form-label">Nit:</label>
+				<input type="number" class="form-control" name="cedula" id="cedula">
+			  </div>
+			  <button type="submit" name="eliminar" class="btn btn-primary">Eliminar</button>
+			</form>
+		  </div>
+
+		</div>
+	  </div>
+	</div>
+
+	<!-- Fin Modal -->
+
+
+<%- include("../../components/footer") %>

@@ -1,0 +1,69 @@
+<%- include("../../components/head-navbar", {tituloWeb: 'Clientes'}) %>
+
+<div class="p-3 d-flex justify-content-center text-center">
+	<h1 class="text-primary">Actualizacion de Cliente</h1>
+</div>
+<div class="container-fluid justify-content-center text-center">
+	<form class="p-3 bg-light" method="POST">
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<div class="col px-md-8">
+					<label for="Nombre">Nombre Proveedor</label>
+					<input
+						type="text"
+						class="form-control"
+						name="nombre"
+						placeholder="Nombre Completo"
+            value="<%=nombre%>"
+					/>
+					<label for="Cédula">Nit</label>
+					<input
+						type="number"
+						class="form-control"
+						name="cedula"
+						placeholder="Número de Cédula"
+            value="<%=cedula%>"
+					readonly
+					/>
+					<label for="Dirección">Dirección</label>
+					<input
+						type="Dirección"
+						class="form-control"
+						name="direccion"
+						placeholder="Direccion de residencia"
+            value="<%=direccion%>"
+					/>
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<div class="col px-md-8">
+					<label for="Teléfono">Teléfono</label>
+					<input
+						type="tel"
+						class="form-control"
+						name="telefono"
+						placeholder="Número de teléfono"
+            value="<%=telefono%>"
+					/>
+					<label for="Correo">Correo Electrónico</label>
+					<input
+						type="email"
+						class="form-control"
+						name="correo"
+						placeholder="Direccion de correo Electrónico"
+            value="<%=email%>"
+					/>
+				</div>
+			</div>
+		</div>
+		<div class="p-5 btn-group btn-group-toggle" data-toggle="buttons">
+      <button type="submit" name="guardar" class="btn btn-outline-success">Actualizar</button>
+			<a class="btn btn-outline-dark" href="/Proveedores" role="button">Regresar</a>
+		</div>
+	</form>
+  <%- include("../../components/footer") %>
+</div>
+
+
+	</div>
+</div>
