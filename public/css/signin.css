@@ -1,24 +1,31 @@
 html,
 body {
-	height: 100%;
-}
-
-body {
 	display: -ms-flexbox;
-	display: flex;
+	display: center;
 	-ms-flex-align: center;
 	align-items: center;
-	padding-top: 40px;
-	padding-bottom: 40px;
-	background-color: #f5f5f5;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background: url("https://cdn.pixabay.com/photo/2021/08/07/20/27/wallpaper-6529276_1280.jpg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .form-signin {
+	background-color: rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+	font-family: sans-serif;
+	text-align: center;
+	line-height: 1;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	width: 100%;
 	max-width: 330px;
 	padding: 15px;
 	margin: auto;
 }
+
 .form-signin .checkbox {
 	font-weight: 400;
 }

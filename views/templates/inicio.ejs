@@ -1,11 +1,13 @@
-<%- include("../components/head-navbar", {tituloWeb: 'Inicio'}) %>
-
-<div class="d-flex justify-content-center">
-    <img src="https://img.icons8.com/clouds/2x/ffffff/shop.png" class="mb-4" alt="Logo" width="200" height="200" />
-</div>
-<div class="p-3 d-flex justify-content-center text-center">
-	<h3 class="text-primary">Por favor seleccione una opción del menú superior</h3>
-</div>
+<%- include("../components/head-navbar", {tituloWeb: 'Inicio' }) %>
+    <div class="myDiv1 container-fluid justify-content-center text-center">
+        <div>
+            <img src="https://img.icons8.com/clouds/2x/ffffff/shop.png" class="mb-4" alt="Logo" width="200"
+                height="200" />
+            <div>
+                <h3 class="text-primary text-black-50">Por favor seleccione una opción del menú superior</h3>
+            </div>
+        </div>
+    </div>
 
     <% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
 
@@ -14,6 +16,7 @@
                 <div class="alert alert-<%= colorAlerta %> ">
                     <%=alerta%>
                 </div>
+
                 <% } %>
 
-<%- include("../components/footer") %>
+                    <%- include("../components/footer") %>

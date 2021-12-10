@@ -1,0 +1,53 @@
+html,
+body {
+	display: -ms-flexbox;
+	display: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding-bottom: 20px;
+	background: url("https://images.pexels.com/photos/37728/pexels-photo-37728.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+	background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size: cover;
+}
+
+.myDiv1 {
+    background-color: rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+	font-family: sans-serif;
+	text-align: center;
+	line-height: 1;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	width: 100%;
+	max-width: 50%;
+	padding: 15px;
+	margin: auto;
+}
+.myDiv2 {
+    background-color: rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+	font-family: sans-serif;
+	text-align: center;
+	line-height: 1;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	width: 100%;
+	max-width: 90%;
+	padding: 15px;
+	margin: auto;
+}
+.myDiv3 {
+    background-color: rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+	font-family: sans-serif;
+	text-align: center;
+	line-height: 1;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	width: 100%;
+	max-width: 50%;
+	padding: 15px;
+	margin: auto;
+}

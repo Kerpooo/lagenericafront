@@ -1,12 +1,13 @@
 <%- include("../../components/head-navbar", {tituloWeb: 'Crear Productos' }) %>
 	<% if(typeof(alerta)!="undefined" && alerta.length> 0 ) { %>
 
-		<div class="d-flex justify-content-center text-center">
-			<div class="container-fluid">
+		<div class="container-fluid justify-content-center text-center">
+			<div> 
 				<div class="alert alert-<%= colorAlerta %> ">
 					<%=alerta%>
 				</div>
 				<% } %>
+				<div class="myDiv2">
 					<h1 class="text-primary text-center">Crear Productos</h1><br>
 					<form method="POST" enctype="multipart/form-data">
 						<div>
@@ -16,6 +17,7 @@
 							</h2>
 						</div>
 					</form>
+				</div>
 			</div>
 		</div>
 		<%- include("../../components/footer") %>
