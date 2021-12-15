@@ -35,6 +35,7 @@ router.get("/actualizar", (req, res) => {
 
 //RequestBack
 function backServerReq(options, data) {
+	let estado;
 	req = http.request(options, (res) => {
 		//status code of the request sent
 		console.log("statusCode: ", res.statusCode);
@@ -46,8 +47,14 @@ function backServerReq(options, data) {
 		//The whole response has been received. Display it into the console.
 		res.on("end", () => {
 			console.log("Result is: " + result);
+			
 		});
+		
+		if(res.statusCode===204){
+			estado=res.statusCode;
+			}
 	});
+
 	//error if any problem with the request
 	req.on("error", (err) => {
 		console.log("Error: " + err.message);
@@ -56,6 +63,7 @@ function backServerReq(options, data) {
 	req.write(data);
 	//to signify the end of the request - even if there is no data being written to the request body.
 	req.end();
+	return(estado);
 }
 
 /////////////////////////////////////////////Metodos HTTP/////////////////////////////////////////
@@ -223,24 +231,47 @@ router.post("/", urlencodedParser, async (req, res) => {
 	//Eliminar
 
 	if (eliminar == "") {
-		const options = {
-			host: "localhost",
-			port: 8082,
-			path: "/api/eliminar/" + cedula,
-			method: "DELETE",
-			headers: {
-				"Content-Type": "application/json",
-				"Content-Length": data.length,
-			},
+		const getCliente = async () => {
+			try {
+				return await axios.get("http://localhost:8082/api/consultar/" + cedula);
+			} catch (error) {
+				console.error(error);
+			}
 		};
 
-		backServerReq(options, data);
+		const useCliente = async () => {
+			const cliente = await getCliente();
 
-		//Alerta Consulta
-		res.render("./templates/vistaClientes/clientes", {
-			alerta: "Cliente Eliminado",
-			colorAlerta: "danger",
-		});
+			console.log(cliente)
+
+			if(cliente === undefined){
+				res.render("./templates/vistaClientes/clientes",{
+					alerta: "Cliente Inexistente",
+					colorAlerta: "danger",
+				})
+			}else{
+				const getCliente = async () => {
+				try {
+					return await axios.delete("http://localhost:8082/api/eliminar/" + cedula);
+				} catch (error) {
+					console.error(error);
+				}
+			};
+				const cliente = await getCliente();
+				console.log(cliente);
+
+				if(cliente.status===204){
+					res.render("./templates/vistaClientes/clientes", {
+						alerta: "Cliente Eliminado",
+						colorAlerta: "danger",
+						});
+				}
+				
+			}
+			
+		};
+
+		useCliente();
 	}
 });
 module.exports = router;
