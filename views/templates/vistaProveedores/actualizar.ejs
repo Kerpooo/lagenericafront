@@ -1,7 +1,7 @@
-<%- include("../../components/head-navbar", {tituloWeb: 'Clientes'}) %>
+<%- include("../../components/head-navbar", {tituloWeb: 'Proveedores'}) %>
 
 <div class="p-3 d-flex justify-content-center text-center">
-	<h1 class="text-primary">Actualizacion de Cliente</h1>
+	<h1 class="text-primary">Actualización de Proveedor</h1>
 </div>
 <div class="container-fluid justify-content-center text-center">
 	<form class="p-3 bg-light" method="POST">
@@ -16,12 +16,12 @@
 						placeholder="Nombre Completo"
             value="<%=nombre%>"
 					/>
-					<label for="Cédula">Nit</label>
+					<label for="NIT">NIT</label>
 					<input
 						type="number"
 						class="form-control"
 						name="cedula"
-						placeholder="Número de Cédula"
+						placeholder="NIT"
             value="<%=cedula%>"
 					readonly
 					/>
@@ -30,7 +30,7 @@
 						type="Dirección"
 						class="form-control"
 						name="direccion"
-						placeholder="Direccion de residencia"
+						placeholder="Dirección"
             value="<%=direccion%>"
 					/>
 				</div>

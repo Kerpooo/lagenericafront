@@ -94,7 +94,7 @@ router.post("/crear", urlencodedParser, async (req, res) => {
 	backServerReq(options, data);
 
 	//Alerta Cliente Creado Correcto
-	res.render("./templates/vistaClientes/crear", {
+	res.render("./templates/vistaClientes/clientes", {
 		alerta: "Cliente Creado",
 		colorAlerta: "success",
 	});
@@ -124,18 +124,24 @@ router.post("/", urlencodedParser, async (req, res) => {
 		const useCliente = async () => {
 			const cliente = await getCliente();
 
-			if (cliente.data) {
+			console.log(cliente);
+			if(cliente === undefined){
+				res.render("./templates/vistaClientes/clientes",{
+					alerta: "Cliente Inexistente",
+					colorAlerta: "danger",
+				})
+			}else{
 				console.log(cliente.data);
-
-				
+	
 				res.render("./templates/vistaClientes/consultar", {
 					nombre: cliente.data.nombreCliente,
 					direccion: cliente.data.direccionCliente,
 					telefono: cliente.data.telefonoCliente,
 					email: cliente.data.emailCliente,
 					cedula: cliente.data.cedula,
-				});
+					});
 			}
+			
 		};
 
 		useCliente();
@@ -153,12 +159,12 @@ router.post("/", urlencodedParser, async (req, res) => {
 		const useCliente = async () => {
 			const cliente = await getCliente();
 
-			if (cliente.data) {
-				console.log(cliente.data);
-				
-	
-
-				
+			if(cliente === undefined){
+				res.render("./templates/vistaClientes/clientes",{
+					alerta: "Cliente Inexistente",
+					colorAlerta: "danger",
+				})
+			}else{
 				res.render("./templates/vistaClientes/actualizar", {
 					nombre: cliente.data.nombreCliente,
 					direccion: cliente.data.direccionCliente,
@@ -208,8 +214,8 @@ router.post("/", urlencodedParser, async (req, res) => {
 	backServerReq(options, data);
 
 	//Alerta Cliente Creado Correcto
-	res.render("./templates/inicio", {
-		alerta: "Cliente Actualizado",
+	res.render("./templates/vistaClientes/clientes", {
+		alerta: "Datos del Cliente Actualizados",
 		colorAlerta: "success",
 	});
 	}
