@@ -5,9 +5,6 @@ const http = require("http");
 const axios = require("axios");
 const app = express();
 
-// create application/json parser
-const jsonParser = bodyParser.json();
-
 // create application/x-www-form-urlencoded parser
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -33,79 +30,55 @@ router.get("/actualizar", (req, res) => {
 	res.render("templates/vistaClientes/actualizar");
 });
 
-//RequestBack
-function backServerReq(options, data) {
-	let estado;
-	req = http.request(options, (res) => {
-		//status code of the request sent
-		console.log("statusCode: ", res.statusCode);
-		let result = "";
-		// A chunk of data has been recieved. Append it with the previously retrieved chunk of data
-		res.on("data", (chunk) => {
-			result += chunk;
-		});
-		//The whole response has been received. Display it into the console.
-		res.on("end", () => {
-			console.log("Result is: " + result);
-			
-		});
-		
-		if(res.statusCode===204){
-			estado=res.statusCode;
-			}
-	});
+router.get("/clientes", (req, res) => {
+	res.render("templates/vistaClientes/clientes");
+});
 
-	//error if any problem with the request
-	req.on("error", (err) => {
-		console.log("Error: " + err.message);
-	});
-	//write data to request body
-	req.write(data);
-	//to signify the end of the request - even if there is no data being written to the request body.
-	req.end();
-	return(estado);
-}
+
 
 /////////////////////////////////////////////Metodos HTTP/////////////////////////////////////////
 /////////////////////////////////////////////Metodos HTTP/////////////////////////////////////////
-router.post("/crear", urlencodedParser, async (req, res) => {
-	const nombreCompleto = req.body.nombreCompleto;
+router.post("/crear", urlencodedParser, async (req, res)=>{
 	const cedula = req.body.cedula;
+	const nombreCompleto = req.body.nombreCompleto;
 	const correo = req.body.correo;
 	const telefono = req.body.telefono;
 	const direccion = req.body.direccion;
+	const crear = req.body.crear;
 
-	const data = JSON.stringify({
+	const dataCrear = JSON.stringify({
 		cedulaCliente: cedula,
 		direccionCliente: direccion,
 		emailCliente: correo,
 		nombreCliente: nombreCompleto,
 		telefonoCliente: telefono,
 	});
-
-	//DEBUGGER
-	console.log(req.body);
-
-	//Para Crear Cliente
-
-	const options = {
-		host: "localhost",
-		port: 8082,
-		path: "/api/crear",
-		method: "POST",
-		headers: {
+	if (crear == ''){
+		const headers={
 			"Content-Type": "application/json",
-			"Content-Length": data.length,
-		},
-	};
+		}
+		const getCliente = async () => {
+			try {
+				return await axios.post("http://localhost:8082/api/crear", dataCrear, { headers });
+			} catch (error) {
+				console.error(error);
+			}
+			
+		};
+		console.log(dataCrear);
+			const useCliente = async () => {
+			const cliente = await getCliente();
+	
+			
+		};
+		useCliente();
+		//Alerta Cliente Creado Correcto
+		res.render("./templates/vistaClientes/clientes", {
+			alerta: "Cliente Creado",
+			colorAlerta: "success",
+		});
+	}
 
-	backServerReq(options, data);
-
-	//Alerta Cliente Creado Correcto
-	res.render("./templates/vistaClientes/clientes", {
-		alerta: "Cliente Creado",
-		colorAlerta: "success",
-	});
 });
 
 router.post("/", urlencodedParser, async (req, res) => {
@@ -118,9 +91,10 @@ router.post("/", urlencodedParser, async (req, res) => {
 	const data = JSON.stringify({
 		cedulaCliente: cedula,
 	});
-
+	
 	//Para consulta por cedula
 	if (buscar == "") {
+		
 		const getCliente = async () => {
 			try {
 				return await axios.get("http://localhost:8082/api/consultar/" + cedula);
@@ -187,7 +161,10 @@ router.post("/", urlencodedParser, async (req, res) => {
 	}
 
 	if (guardar == "") {
-
+		
+		const headers={
+			"Content-Type": "application/json",
+		}
 		const nombre = req.body.nombre;
 		const cedula =req.body.cedula;
 		const correo = req.body.correo;
@@ -201,31 +178,25 @@ router.post("/", urlencodedParser, async (req, res) => {
 			nombreCliente: nombre,
 			telefonoCliente: telefono,
 		});
+		const getCliente = async () => {
+			try {
+				return await axios.post("http://localhost:8082/api/crear/", data, { headers });
+			} catch (error) {
+				console.error(error);
+			}
+			
+		};
+		console.log(data);
+		const useCliente = async () => {
+			const cliente = await getCliente();
 
-	//DEBUGGER
-	console.log(data);
+			res.render("./templates/vistaClientes/clientes",{
+				alerta: "Datos del cliente actualizados",
+				colorAlerta: "success",
+			});	
+		};
 
-
-	//Para actualizar Cliente
-
-	const options = {
-		host: "localhost",
-		port: 8082,
-		path: "/api/crear",
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			"Content-Length": data.length,
-		},
-	};
-
-	backServerReq(options, data);
-
-	//Alerta Cliente Creado Correcto
-	res.render("./templates/vistaClientes/clientes", {
-		alerta: "Datos del Cliente Actualizados",
-		colorAlerta: "success",
-	});
+		useCliente();
 	}
 
 	//Eliminar
